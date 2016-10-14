@@ -26,12 +26,13 @@ public class DoodleView extends View {
    // used to determine whether user moved a finger enough to draw again
    private static final float TOUCH_TOLERANCE = 10;
 
+   private Bitmap bkmap; // background
    private Bitmap bitmap; // drawing area for displaying or saving
    private Canvas bitmapCanvas; // used to to draw on the bitmap
-   private final Paint paintScreen; // used to draw bitmap onto screen
+   //private final Paint paintScreen; // used to draw bitmap onto screen
    private final Paint paintLine; // used to draw lines onto bitmap
-   private int backgroundColor; // background color when a new drawing is started
-   private int defaultBackgroundColor; // default background color when a new drawing is started
+   private int backgroundColor = Color.WHITE; // background color when a new drawing is started
+   private int defaultBackgroundColor = Color.WHITE; // default background color when a new drawing is started
 
    // Maps of current Paths being drawn and Points in those Paths
    private final Map<Integer, Path> pathMap = new HashMap<>();
@@ -40,7 +41,7 @@ public class DoodleView extends View {
    // DoodleView constructor initializes the DoodleView
    public DoodleView(Context context, AttributeSet attrs) {
       super(context, attrs); // pass context to View's constructor
-      paintScreen = new Paint(); // used to display bitmap onto screen
+      //paintScreen = new Paint(); // used to display bitmap onto screen
 
       // set the initial display settings for the painted line
       paintLine = new Paint();
@@ -57,14 +58,16 @@ public class DoodleView extends View {
       bitmap = Bitmap.createBitmap(getWidth(), getHeight(),
          Bitmap.Config.ARGB_8888);
       bitmapCanvas = new Canvas(bitmap);
-      bitmap.eraseColor(backgroundColor); // erase the Bitmap with white
+      bitmap.eraseColor(Color.TRANSPARENT); // erase the Bitmap with white
    }
 
    // clear the painting
    public void clear() {
       pathMap.clear(); // remove all paths
       previousPointMap.clear(); // remove all previous points
-      bitmap.eraseColor(defaultBackgroundColor); // clear the bitmap
+      bitmap.eraseColor(Color.TRANSPARENT); // clear the bitmap
+      backgroundColor = defaultBackgroundColor;
+      setBackgroundColor(backgroundColor);
       invalidate(); // refresh the screen
    }
 
@@ -91,11 +94,11 @@ public class DoodleView extends View {
    // return the current background color
    public int getBackgroundColor() { return backgroundColor; }
 
-   // set the background color and pdate the drawing
+   // set the background color and update the drawing
+   @Override
    public void setBackgroundColor(int color) {
+      super.setBackgroundColor(color);
       backgroundColor = color;
-      bitmap.eraseColor(backgroundColor); // clear the bitmap
-      invalidate(); // refresh the screen
    }
 
    // return the current default background color
@@ -108,7 +111,7 @@ public class DoodleView extends View {
    @Override
    protected void onDraw(Canvas canvas) {
       // draw the background screen
-      canvas.drawBitmap(bitmap, 0, 0, paintScreen);
+      canvas.drawBitmap(bitmap, 0, 0, null);
 
       // for each path currently being drawn
       for (Integer key : pathMap.keySet())
@@ -214,7 +217,7 @@ public class DoodleView extends View {
 
       // insert the image on the device
       String location = MediaStore.Images.Media.insertImage(
-         getContext().getContentResolver(), bitmap, name,
+         getContext().getContentResolver(), addBackground(), name,
          "Doodlz Drawing");
 
       if (location != null) {
@@ -235,6 +238,15 @@ public class DoodleView extends View {
          message.show();
       }
    }
+   // Create a bitmap that includes the background for exporting to a jpg or printing
+   private Bitmap addBackground() {
+      Bitmap merged = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(),
+              Bitmap.Config.ARGB_8888);
+      Canvas canvas = new Canvas(merged);
+      merged.eraseColor(backgroundColor); // put the background color on the bitmap
+      canvas.drawBitmap(bitmap, 0, 0, null);
+      return merged;
+   }
 
    // print the current image
    public void printImage() {
@@ -244,7 +256,7 @@ public class DoodleView extends View {
 
          // fit image in page bounds and print the image
          printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-         printHelper.printBitmap("Doodlz Image", bitmap);
+         printHelper.printBitmap("Doodlz Image", addBackground());
       }
       else {
          // display message indicating that system does not allow printing
