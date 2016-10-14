@@ -154,6 +154,14 @@ public class MainActivityFragment extends Fragment {
                new LineWidthDialogFragment();
             widthDialog.show(getFragmentManager(), "line width dialog");
             return true; // consume the menu event
+         case R.id.default_background:
+            DefaultBackgroundFragment defDialog = new DefaultBackgroundFragment();
+            defDialog.show(getFragmentManager(), "default background dialog");
+            return true; // consume the menu event
+         case R.id.background:
+            BackgroundFragment backDialog = new BackgroundFragment();
+            backDialog.show(getFragmentManager(), "background dialog");
+            return true; // consume the menu event
          case R.id.delete_drawing:
             confirmErase(); // confirm before erasing image
             return true; // consume the menu event

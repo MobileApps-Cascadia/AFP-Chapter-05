@@ -20,7 +20,44 @@ public class ColorDialogFragment extends DialogFragment {
    private SeekBar greenSeekBar;
    private SeekBar blueSeekBar;
    private View colorView;
+   private DoodleView doodleView;
    private int color;
+
+   public SeekBar getAlphaSeekBar() {
+      return alphaSeekBar;
+   }
+
+   public SeekBar getRedSeekBar() {
+      return redSeekBar;
+   }
+
+   public SeekBar getGreenSeekBar() {
+      return greenSeekBar;
+   }
+
+   public SeekBar getBlueSeekBar() {
+      return blueSeekBar;
+   }
+
+   public View getColorView() {
+      return colorView;
+   }
+
+   public int getColor() {
+      return color;
+   }
+
+   public void setColor(int color) {
+      this.color = color;
+      alphaSeekBar.setProgress(Color.alpha(color));
+      redSeekBar.setProgress(Color.red(color));
+      greenSeekBar.setProgress(Color.green(color));
+      blueSeekBar.setProgress(Color.blue(color));
+   }
+
+   public DoodleView getDoodleView() {
+      return doodleView;
+   }
 
    // create an AlertDialog and return it
    @Override
@@ -53,12 +90,8 @@ public class ColorDialogFragment extends DialogFragment {
       blueSeekBar.setOnSeekBarChangeListener(colorChangedListener);
 
       // use current drawing color to set SeekBar values
-      final DoodleView doodleView = getDoodleFragment().getDoodleView();
-      color = doodleView.getDrawingColor();
-      alphaSeekBar.setProgress(Color.alpha(color));
-      redSeekBar.setProgress(Color.red(color));
-      greenSeekBar.setProgress(Color.green(color));
-      blueSeekBar.setProgress(Color.blue(color));
+      doodleView = getDoodleFragment().getDoodleView();
+      setColor(doodleView.getDrawingColor());
 
       // add Set Color Button
       builder.setPositiveButton(R.string.button_set_color,
@@ -73,7 +106,7 @@ public class ColorDialogFragment extends DialogFragment {
    }
 
    // gets a reference to the MainActivityFragment
-   private MainActivityFragment getDoodleFragment() {
+   protected MainActivityFragment getDoodleFragment() {
       return (MainActivityFragment) getFragmentManager().findFragmentById(
          R.id.doodleFragment);
    }

@@ -16,6 +16,20 @@
    </item>
 
    <item
+       android:id="@+id/default_background"
+       android:title="@string/menuitem_default_background"
+       android:icon="@drawable/ic_dft_bgd_24dp"
+       app:showAsAction="ifRoom">
+   </item>
+
+   <item
+       android:id="@+id/background"
+       android:title="@string/menuitem_background"
+       android:icon="@drawable/ic_bgd_color_24dp"
+       app:showAsAction="ifRoom">
+   </item>
+
+   <item
       android:id="@+id/delete_drawing"
       android:title="@string/menuitem_delete"
       android:icon="@drawable/ic_delete_24dp"

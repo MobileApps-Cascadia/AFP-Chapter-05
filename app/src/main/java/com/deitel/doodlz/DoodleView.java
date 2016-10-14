@@ -3,6 +3,7 @@
 package com.deitel.doodlz;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -29,6 +30,8 @@ public class DoodleView extends View {
    private Canvas bitmapCanvas; // used to to draw on the bitmap
    private final Paint paintScreen; // used to draw bitmap onto screen
    private final Paint paintLine; // used to draw lines onto bitmap
+   private int backgroundColor; // background color when a new drawing is started
+   private int defaultBackgroundColor; // default background color when a new drawing is started
 
    // Maps of current Paths being drawn and Points in those Paths
    private final Map<Integer, Path> pathMap = new HashMap<>();
@@ -54,14 +57,14 @@ public class DoodleView extends View {
       bitmap = Bitmap.createBitmap(getWidth(), getHeight(),
          Bitmap.Config.ARGB_8888);
       bitmapCanvas = new Canvas(bitmap);
-      bitmap.eraseColor(Color.WHITE); // erase the Bitmap with white
+      bitmap.eraseColor(backgroundColor); // erase the Bitmap with white
    }
 
    // clear the painting
    public void clear() {
       pathMap.clear(); // remove all paths
       previousPointMap.clear(); // remove all previous points
-      bitmap.eraseColor(Color.WHITE); // clear the bitmap
+      bitmap.eraseColor(defaultBackgroundColor); // clear the bitmap
       invalidate(); // refresh the screen
    }
 
@@ -84,6 +87,22 @@ public class DoodleView extends View {
    public int getLineWidth() {
       return (int) paintLine.getStrokeWidth();
    }
+
+   // return the current background color
+   public int getBackgroundColor() { return backgroundColor; }
+
+   // set the background color and pdate the drawing
+   public void setBackgroundColor(int color) {
+      backgroundColor = color;
+      bitmap.eraseColor(backgroundColor); // clear the bitmap
+      invalidate(); // refresh the screen
+   }
+
+   // return the current default background color
+   public int getDefaultBackgroundColor() { return defaultBackgroundColor; }
+
+   // set the background default color
+   public void setDefaultBackgroundColor(int color) { defaultBackgroundColor = color; }
 
    // perform custom drawing when the DoodleView is refreshed on screen
    @Override
