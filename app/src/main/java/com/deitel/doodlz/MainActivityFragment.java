@@ -138,7 +138,12 @@ public class MainActivityFragment extends Fragment {
    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
       super.onCreateOptionsMenu(menu, inflater);
       inflater.inflate(R.menu.doodle_fragment_menu, menu);
+      this.menu = menu;
+      // get the shape menu item in case we need it later
+      shape = menu.findItem(R.id.shape);
    }
+   private Menu menu; // Options menu
+   private MenuItem shape;
 
    // handle choice from options menu
    @Override
@@ -154,6 +159,22 @@ public class MainActivityFragment extends Fragment {
                new LineWidthDialogFragment();
             widthDialog.show(getFragmentManager(), "line width dialog");
             return true; // consume the menu event
+
+         // handle shape selection
+         case R.id.curves:
+            shape.setIcon(R.drawable.ic_gesture_24dp);
+            doodleView.setShape(DoodleView.ShapeEnum.Curve);
+            return true;
+         case R.id.rectangle:
+            shape.setIcon(R.drawable.ic_rectangle_24dp);
+            doodleView.setShape(DoodleView.ShapeEnum.Rectangle);
+            return true;
+         case R.id.oval:
+            shape.setIcon(R.drawable.ic_oval_24dp);
+            doodleView.setShape(DoodleView.ShapeEnum.Oval);
+            return true;
+
+         // set default background color
          case R.id.default_background:
             DefaultBackgroundFragment defDialog = new DefaultBackgroundFragment();
             defDialog.show(getFragmentManager(), "default background dialog");
@@ -175,7 +196,6 @@ public class MainActivityFragment extends Fragment {
 
       return super.onOptionsItemSelected(item);
    }
-
    // requests for the permission needed for saving the image if
    // necessary or saves the image if the app already has permission
    private void saveImage() {

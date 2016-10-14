@@ -16,6 +16,37 @@
    </item>
 
    <item
+       android:id="@+id/shape"
+       android:title="@string/menuitem_shape"
+       android:icon="@drawable/ic_gesture_24dp"
+       app:showAsAction="ifRoom">
+
+      <menu xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+         <item
+             android:id="@+id/curves"
+             android:title="@string/menuitem_lines"
+             android:icon="@drawable/ic_gesture_24dp"
+             app:showAsAction="ifRoom">
+         </item>
+
+         <item
+             android:id="@+id/rectangle"
+             android:title="@string/menuitem_rectangle"
+             android:icon="@drawable/ic_rectangle_24dp"
+             app:showAsAction="ifRoom">
+         </item>
+
+         <item
+             android:id="@+id/oval"
+             android:title="@string/menuitem_oval"
+             android:icon="@drawable/ic_oval_24dp"
+             app:showAsAction="ifRoom">
+         </item>
+      </menu>
+   </item>
+
+   <item
        android:id="@+id/default_background"
        android:title="@string/menuitem_default_background"
        android:icon="@drawable/ic_dft_bgd_24dp"

@@ -24,4 +24,8 @@
    <string name="title_background_dialog">Choose Background Color</string>
    <string name="permission_explanation">To save an image, the app requires permission to write to external storage</string>
    <string name="menuitem_background">Background Color</string>
+   <string name="menuitem_shape">Shape</string>
+   <string name="menuitem_rectangle">Rectangle</string>
+   <string name="menuitem_oval">Oval</string>
+   <string name="menuitem_lines">Lines</string>
 </resources>

@@ -23,13 +23,16 @@ import java.util.Map;
 
 // custom View for drawing
 public class DoodleView extends View {
+   // used to determine what a touch draws: a curve, rectangle, or oval
+   public enum ShapeEnum {
+      Curve, Rectangle, Oval
+   }
+   private ShapeEnum shapeEnum; // keep track of the current shape
    // used to determine whether user moved a finger enough to draw again
    private static final float TOUCH_TOLERANCE = 10;
 
-   private Bitmap bkmap; // background
    private Bitmap bitmap; // drawing area for displaying or saving
    private Canvas bitmapCanvas; // used to to draw on the bitmap
-   //private final Paint paintScreen; // used to draw bitmap onto screen
    private final Paint paintLine; // used to draw lines onto bitmap
    private int backgroundColor = Color.WHITE; // background color when a new drawing is started
    private int defaultBackgroundColor = Color.WHITE; // default background color when a new drawing is started
@@ -41,7 +44,6 @@ public class DoodleView extends View {
    // DoodleView constructor initializes the DoodleView
    public DoodleView(Context context, AttributeSet attrs) {
       super(context, attrs); // pass context to View's constructor
-      //paintScreen = new Paint(); // used to display bitmap onto screen
 
       // set the initial display settings for the painted line
       paintLine = new Paint();
@@ -51,6 +53,12 @@ public class DoodleView extends View {
       paintLine.setStrokeWidth(5); // set the default line width
       paintLine.setStrokeCap(Paint.Cap.ROUND); // rounded line ends
    }
+
+   // Set the shape for the drawing and update the menu
+   public void setShape(ShapeEnum shapeEnum) {
+      this.shapeEnum = shapeEnum;
+   }
+
 
    // creates Bitmap and Canvas based on View's size
    @Override
@@ -94,7 +102,7 @@ public class DoodleView extends View {
    // return the current background color
    public int getBackgroundColor() { return backgroundColor; }
 
-   // set the background color and update the drawing
+   // set the background color and save it
    @Override
    public void setBackgroundColor(int color) {
       super.setBackgroundColor(color);
