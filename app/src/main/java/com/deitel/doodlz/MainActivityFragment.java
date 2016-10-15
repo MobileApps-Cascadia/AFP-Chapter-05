@@ -145,6 +145,10 @@ public class MainActivityFragment extends Fragment {
    public boolean onOptionsItemSelected(MenuItem item) {
       // switch based on the MenuItem id
       switch (item.getItemId()) {
+         case R.id.background_color:
+            BackgroundColorFragment backgroundColorFragment = new BackgroundColorFragment();
+            backgroundColorFragment.show(getFragmentManager(), "background color dialog");
+            return true; // consume the menu event
          case R.id.color:
             ColorDialogFragment colorDialog = new ColorDialogFragment();
             colorDialog.show(getFragmentManager(), "color dialog");

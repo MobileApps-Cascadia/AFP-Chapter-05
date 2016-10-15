@@ -9,6 +9,13 @@
    </item>
 
    <item
+       android:id="@+id/background_color"
+       android:title="@string/menuitem_background_color"
+       android:icon="@drawable/ic_palette_24dp"
+       app:showAsAction="ifRoom">
+   </item>
+
+   <item
       android:id="@+id/line_width"
       android:title="@string/menuitem_line_width"
       android:icon="@drawable/ic_brush_24dp"
