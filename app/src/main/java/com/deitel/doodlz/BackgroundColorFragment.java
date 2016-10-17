@@ -32,7 +32,7 @@ public class BackgroundColorFragment extends DialogFragment {
         builder.setView(colorDialogView); // add GUI to dialog
 
         // set the AlertDialog's message
-        builder.setTitle(R.string.title_color_dialog);
+        builder.setTitle(R.string.title_backcolor_dialog);
 
         // get the color SeekBars and set their onChange listeners
         alphaSeekBar = (SeekBar) colorDialogView.findViewById(
@@ -53,7 +53,7 @@ public class BackgroundColorFragment extends DialogFragment {
 
         // use current drawing color to set SeekBar values
         final DoodleView doodleView = getDoodleFragment().getDoodleView();
-        backgroundColor = doodleView.getDrawingColor();
+        backgroundColor = doodleView.getBackgroundColor();
         alphaSeekBar.setProgress(Color.alpha(backgroundColor));
         redSeekBar.setProgress(Color.red(backgroundColor));
         greenSeekBar.setProgress(Color.green(backgroundColor));
