@@ -151,7 +151,7 @@ public class MainActivityFragment extends Fragment {
             return true; // consume the menu event
          case R.id.line_width:
             LineWidthDialogFragment widthDialog =
-               new LineWidthDialogFragment();
+                    new LineWidthDialogFragment();
             widthDialog.show(getFragmentManager(), "line width dialog");
             return true; // consume the menu event
          case R.id.delete_drawing:
@@ -163,6 +163,12 @@ public class MainActivityFragment extends Fragment {
          case R.id.print:
             doodleView.printImage(); // print the current images
             return true; // consume the menu event
+      }
+      // Menu for bg color change
+      switch (item.getItemId()) {
+         case R.id.background:
+            ColorDialogFrag_BG colorDialog = new ColorDialogFrag_BG();
+            colorDialog.show(getFragmentManager(), "color dialog for BG");
       }
 
       return super.onOptionsItemSelected(item);

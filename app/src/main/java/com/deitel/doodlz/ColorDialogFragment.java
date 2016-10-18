@@ -22,6 +22,7 @@ public class ColorDialogFragment extends DialogFragment {
    private View colorView;
    private int color;
 
+
    // create an AlertDialog and return it
    @Override
    public Dialog onCreateDialog(Bundle bundle) {
@@ -71,6 +72,8 @@ public class ColorDialogFragment extends DialogFragment {
 
       return builder.create(); // return dialog
    }
+
+
 
    // gets a reference to the MainActivityFragment
    private MainActivityFragment getDoodleFragment() {

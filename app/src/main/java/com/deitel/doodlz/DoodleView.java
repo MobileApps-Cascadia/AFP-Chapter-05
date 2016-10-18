@@ -57,6 +57,12 @@ public class DoodleView extends View {
       bitmap.eraseColor(Color.WHITE); // erase the Bitmap with white
    }
 
+   @Override                                       // ZMM
+   public void setBackgroundColor(int c){
+      super.setBackgroundColor(c);
+      bitmap.eraseColor(c);
+   }
+
    // clear the painting
    public void clear() {
       pathMap.clear(); // remove all paths
@@ -190,13 +196,13 @@ public class DoodleView extends View {
 
    // save the current image to the Gallery
    public void saveImage() {
-      // use "Doodlz" followed by current time as the image name
-      final String name = "Doodlz" + System.currentTimeMillis() + ".jpg";
+      // use "Doodle" followed by current time as the image name
+      final String name = "Doodle" + System.currentTimeMillis() + ".jpg";
 
       // insert the image on the device
       String location = MediaStore.Images.Media.insertImage(
          getContext().getContentResolver(), bitmap, name,
-         "Doodlz Drawing");
+         "Doodle Drawing");
 
       if (location != null) {
          // display a message indicating that the image was saved
@@ -225,7 +231,7 @@ public class DoodleView extends View {
 
          // fit image in page bounds and print the image
          printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-         printHelper.printBitmap("Doodlz Image", bitmap);
+         printHelper.printBitmap("Doodle Image", bitmap);
       }
       else {
          // display message indicating that system does not allow printing

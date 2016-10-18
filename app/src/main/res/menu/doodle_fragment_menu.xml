@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
    <item
+       android:id="@+id/background"
+       android:title="@string/menuitem_changeBg"
+       android:icon="@drawable/ic_grid_on_black_24dp"
+       app:showAsAction="ifRoom">
+   </item>
+
+   <item
       android:id="@+id/color"
       android:title="@string/menuitem_color"
       android:icon="@drawable/ic_palette_24dp"
