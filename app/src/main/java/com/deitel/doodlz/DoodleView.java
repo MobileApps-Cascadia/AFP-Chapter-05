@@ -65,7 +65,6 @@ public class DoodleView extends View {
       previousPointMap.clear(); // remove all previous points
       bitmap.eraseColor(Color.WHITE); // clear the bitmap
       backgroundColor = defaultbackgroundColor;
-      setBackgroundColor(backgroundColor);
       invalidate(); // refresh the screen
    }
 
@@ -77,6 +76,13 @@ public class DoodleView extends View {
    // return the painted line's color
    public int getDrawingColor() {
       return paintLine.getColor();
+   }
+
+   @Override
+   public void setBackgroundColor(int color) {
+      //super.setBackgroundColor(color); use for when actually overriding android parent class method
+      bitmap.eraseColor(color);
+      backgroundColor = color;
    }
 
    public int getBackgroundColor() { return backgroundColor; }
