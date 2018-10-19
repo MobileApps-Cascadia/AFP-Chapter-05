@@ -163,6 +163,11 @@ public class MainActivityFragment extends Fragment {
          case R.id.print:
             doodleView.printImage(); // print the current images
             return true; // consume the menu event
+         case R.id.Fill:
+             ColorFillFragment colorFill = new ColorFillFragment();
+             colorFill.show(getFragmentManager(), "fill");
+             return true;
+
       }
 
       return super.onOptionsItemSelected(item);
