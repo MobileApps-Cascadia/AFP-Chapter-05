@@ -70,9 +70,20 @@ public class DoodleView extends View {
       paintLine.setColor(color);
    }
 
+   // set the background color
+   public void setBackgroundColor(int bgColor) {
+      paintScreen.setColor(bgColor);
+      bitmapCanvas.drawRect(0,0,bitmap.getWidth(),bitmap.getHeight(),paintScreen);
+   }
+
    // return the painted line's color
    public int getDrawingColor() {
       return paintLine.getColor();
+   }
+
+   // return the background color
+   public int getBackgroundColor() {
+      return paintScreen.getColor();
    }
 
    // set the painted line's width

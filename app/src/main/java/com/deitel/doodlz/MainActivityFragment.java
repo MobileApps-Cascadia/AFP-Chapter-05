@@ -154,6 +154,10 @@ public class MainActivityFragment extends Fragment {
                new LineWidthDialogFragment();
             widthDialog.show(getFragmentManager(), "line width dialog");
             return true; // consume the menu event
+         case R.id.background_color:
+            BackgroundColorDialogFragment bgColorDialog = new BackgroundColorDialogFragment();
+            bgColorDialog.show(getFragmentManager(),"background color dialog");
+            return true; // consume the menu event
          case R.id.delete_drawing:
             confirmErase(); // confirm before erasing image
             return true; // consume the menu event
