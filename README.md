@@ -1,4 +1,4 @@
-# Enhanced Doodlz - AFP Chapter 06
+# Enhanced Doodlz - AFP Chapter 05
  1. Fork the repo
  2. Clone the repo to your desktop
  3. Complete the enhancements to the Doodlz App
