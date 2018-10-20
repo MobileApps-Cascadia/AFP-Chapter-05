@@ -144,10 +144,11 @@ public class MainActivityFragment extends Fragment {
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       // switch based on the MenuItem id
+      //
       switch (item.getItemId()) {
          case R.id.color:
             ColorDialogFragment colorDialog = new ColorDialogFragment();
-            colorDialog.show(getFragmentManager(), "color dialog");
+            colorDialog.show(getFragmentManager(), "color dialog");//show dialog and positive buton setpositivebutton
             return true; // consume the menu event
          case R.id.line_width:
             LineWidthDialogFragment widthDialog =

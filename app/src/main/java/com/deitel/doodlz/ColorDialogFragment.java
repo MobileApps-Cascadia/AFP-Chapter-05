@@ -104,7 +104,7 @@ public class ColorDialogFragment extends DialogFragment {
          // display the updated color
          @Override
          public void onProgressChanged(SeekBar seekBar, int progress,
-            boolean fromUser) {
+            boolean fromUser) {//when color is changed this is executed
 
             if (fromUser) // user, not program, changed SeekBar progress
                color = Color.argb(alphaSeekBar.getProgress(),
