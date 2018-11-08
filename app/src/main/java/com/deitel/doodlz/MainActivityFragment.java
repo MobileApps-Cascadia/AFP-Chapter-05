@@ -149,6 +149,9 @@ public class MainActivityFragment extends Fragment {
             ColorDialogFragment colorDialog = new ColorDialogFragment();
             colorDialog.show(getFragmentManager(), "color dialog");
             return true; // consume the menu event
+         case R.id.backgroundColor:
+            BackgroundColorDialogFragment backgroundColorDialog = new BackgroundColorDialogFragment();
+            backgroundColorDialog.show(getFragmentManager(), "background color dialog");
          case R.id.line_width:
             LineWidthDialogFragment widthDialog =
                new LineWidthDialogFragment();
